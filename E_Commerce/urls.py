@@ -24,4 +24,5 @@ urlpatterns = [
     path('services/', include('services.urls')),
     path('contact/', include('contact.urls')),
     path('blog/', include('blog.urls')),
+    path('UserRegistrationDRF/', include('UserRegistrationDRF.urls')),
 ]

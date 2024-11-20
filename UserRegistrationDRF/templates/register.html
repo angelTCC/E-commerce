@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Register</h1>
+    <form id="registerForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+    
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+    
+            const response = await fetch('/UserRegistrationDRF/api/register/', {  // Correct URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, email, password }),
+            });
+    
+            if (response.ok) {
+                alert('User registered successfully!');
+    
+                // Reset the form fields
+                document.getElementById('registerForm').reset();
+            } else {
+                const errorData = await response.json();
+                alert('Error: ' + JSON.stringify(errorData));
+            }
+        });
+    </script>
+    
+    
+    
+{% endblock %}
