@@ -24,7 +24,7 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
     
-            const response = await fetch('/UserRegistrationDRF/api/register/', {  // Correct URL
+            const response = await fetch('/UserRegistrationDRF/api/register/', {  // Ensure you're using the correct API URL
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -35,15 +35,13 @@
             if (response.ok) {
                 alert('User registered successfully!');
     
-                // Reset the form fields
-                document.getElementById('registerForm').reset();
+                // Redirect to home page after successful registration
+                window.location.href = '/';  // Or 'home' depending on your URL configuration
             } else {
                 const errorData = await response.json();
                 alert('Error: ' + JSON.stringify(errorData));
             }
         });
     </script>
-    
-    
-    
+
 {% endblock %}
